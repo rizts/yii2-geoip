@@ -15,8 +15,18 @@ class Result extends ResultBase {
     protected function getCity($data) {
         $value = null;
 
-        if (isset($data['city']['names']['en'])) {
-            $value = $data['city']['names']['en'];
+        if (isset($data['city'])) {
+            $value = json_decode(json_encode($data['city']));
+        }
+
+        return $value;
+    }
+
+    protected function getContinent($data) {
+        $value = null;
+
+        if (isset($data['continent'])) {
+            $value = json_decode(json_encode($data['continent']));
         }
 
         return $value;
@@ -25,30 +35,28 @@ class Result extends ResultBase {
     protected function getCountry($data) {
         $value = null;
 
-        if (isset($data['country']['names']['en'])) {
-            $value = $data['country']['names']['en'];
+        if (isset($data['country'])) {
+            $value = json_decode(json_encode($data['country']));
         }
 
         return $value;
     }
 
     protected function getLocation($data) {
-        $value = new Location();
+        $value = null;
 
         if (isset($data['location'])) {
-            $lat = $data['location']['latitude'];
-            $lng = $data['location']['longitude'];
-            $value = new Location($lat, $lng);
+            $value = json_decode(json_encode($data['location']));
         }
 
         return $value;
     }
 
-    protected function getIsoCode($data) {
+    protected function getSubdivisions($data) {
         $value = null;
 
-        if (isset($data['country']['iso_code'])) {
-            $value = $data['country']['iso_code'];
+        if (isset($data['subdivisions'])) {
+            $value = json_decode(json_encode($data['subdivisions']));
         }
 
         return $value;
